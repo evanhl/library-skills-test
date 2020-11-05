@@ -15,6 +15,7 @@ const db = low(adapter)
 db.defaults({ requests: [], maxRequestId: 0 })
   .write()
 
+// Handle endpoints below
 app.get('/', (req, res) => {
   res.send('Welcome to the library.')
 })
@@ -86,12 +87,7 @@ app.delete('/request/:id', (req, res) => {
   }
 })
 
+// Start server
 app.listen(port, () => {
   console.log(`Library-skills-test listening at http://localhost:${port}`)
 })
-
-// TODO: write integration tests
-// TODO: move DAO and endpoints into separate files
-// TODO: move DB code into its own file
-// TODO: some of lowdb's operations are non-atomic
-

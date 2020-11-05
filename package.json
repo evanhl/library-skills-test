@@ -2,7 +2,7 @@
   "name": "library-skills-test",
   "version": "0.0.1",
   "description": "The library portion of the skills test for GiveDirectly. A simple REST API for book checkout.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },
