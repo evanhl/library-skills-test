@@ -59,8 +59,8 @@ app.get('/request/:id', (req, res) => {
     .find({ id: parseInt(req.params.id) })
     .value()
 
-  if (typeof value !== 'undefined') {
-    res.json(value)
+  if (typeof record !== 'undefined') {
+    res.json(record)
   } else {
     res.sendStatus(404)
   }
@@ -71,19 +71,27 @@ app.get('/request', (req, res) => {
 });
 
 app.delete('/request/:id', (req, res) => {
+  const record = db.get('requests')
+    .find({ id: parseInt(req.params.id) })
+    .value();
+
   db.get('requests')
     .remove({ id: parseInt(req.params.id) })
     .write();
 
-  res.sendStatus(204)
+  if (typeof record !== 'undefined') {
+    res.sendStatus(204)
+  } else {
+    res.sendStatus(404)
+  }
 })
 
 app.listen(port, () => {
-  console.log(`Library app listening at http://localhost:${port}`)
+  console.log(`Library-skills-test listening at http://localhost:${port}`)
 })
 
 // TODO: write integration tests
 // TODO: move DAO and endpoints into separate files
-// TODO: fancy async shit with express
 // TODO: move DB code into its own file
+// TODO: some of lowdb's operations are non-atomic
 
